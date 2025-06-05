@@ -2,19 +2,24 @@
 #
 # Copyright (c) 2018 Ensoft Ltd
 
+import asyncio
+import logging
 from collections import defaultdict
-import asyncio, logging
+
 import ujson
+from starlette.websockets import WebSocketDisconnect
 from websockets.exceptions import ConnectionClosed
+
+from ._util import events
 from .connection import ConState
 from .feature import *
-from ._util import events
 
 log = logging.getLogger(__name__)
 
 # Once: normalize the Feature schemas, so that subclasses pick up the supported
 # requests or notifications from their ancestor classes
 Feature.normalize_schema()
+
 
 # Turn multiple args into a single flat key for dict lookups
 def _mktuple(*args):
@@ -52,11 +57,10 @@ class WebsocketHandler:
         Mini-event loop that listens for incoming requests and handles them
         """
         while True:
-            got_req = False
             try:
                 # If client is inactive for 10 minutes, send a ping to verify
                 # connectivity
-                req = await asyncio.wait_for(self.ws.recv(), timeout=10*60)
+                req = await asyncio.wait_for(self.ws.recv(), timeout=10 * 60)
                 got_req = True
             except asyncio.TimeoutError:
                 try:
@@ -69,14 +73,9 @@ class WebsocketHandler:
             except (asyncio.CancelledError, ConnectionClosed):
                 self._handle_websocket_closed()
                 break
-            except Exception as e:
-                log.error("Websocket recv exception: %s", e)
+
             try:
-                if got_req:
-                    await self._handle_req(req)
-            except (asyncio.CancelledError, ConnectionClosed):
-                self._handle_websocket_closed()
-                break
+                await self._handle_req(req)
             except Exception as e:
                 log.error(
                     "Exception during _handle_req: %s (see debug.log for details)", e
@@ -133,7 +132,7 @@ class WebsocketHandler:
         if nfn["nfn_type"] != "pong":
             log.debug("WS SEND: {}".format(abbreviate(nfn)))
         json = ujson.dumps(nfn)
-        await self.ws.send(json)
+        await self.ws.send_text(json)
 
     async def notify_error(self, error, **nfn):
         """
@@ -219,6 +218,7 @@ class WebsocketHandler:
         log.info("Websocket closed")
         for feature in self.features:
             feature.close()
+
 
 MAX_LENGTH = 200
 

@@ -141,7 +141,9 @@ class WebsocketHandler:
         """
         Send an outbound error, caught by the frontend's app top level
         """
-        await self.notify(channel="error", nfn_type="error", value=error, **nfn)
+        await self.notify(
+            channel="error", nfn_type="error", value=error, **nfn
+        )
 
     def add_feature(self, feature, channel=None, target=None):
         """

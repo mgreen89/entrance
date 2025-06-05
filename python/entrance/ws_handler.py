@@ -78,10 +78,13 @@ class WebsocketHandler:
                 await self._handle_req(req)
             except Exception as e:
                 log.error(
-                    "Exception during _handle_req: %s (see debug.log for details)", e
+                    "Exception during _handle_req: %s (see debug.log for details)",
+                    e,
                 )
                 log.debug(
-                    "_handle_req exception details", exc_info=True, stack_info=True
+                    "_handle_req exception details",
+                    exc_info=True,
+                    stack_info=True,
                 )
                 await self.notify_error(str(e))
 

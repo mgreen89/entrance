@@ -1,3 +1,5 @@
+@use "../TopLevel/defs";
+
 /*
  * Config styling
  */
@@ -18,10 +20,10 @@
     display: inline-block;
     color: black;
     padding-right: 1em;
-    border-bottom: 1px solid $red;
+    border-bottom: 1px solid defs.$red;
    }
    .unsupported .error {
-       border-bottom-color: $green;
+       border-bottom-color: defs.$green;
    }
 
   .err-msg {
@@ -31,18 +33,18 @@
     margin-top: 3px;
     padding: 1px .5em 0;
     background-color: white;
-    color: $red;
+    color: defs.$red;
     font-weight: 500;
     font-size: 80%;
     max-width: 31em;
-    border: 1px solid $red;
+    border: 1px solid defs.$red;
     border-radius: .3em;
   }
   .unsupported .err-msg {
-    color: $green;
-    border-color: $green;
+    color: defs.$green;
+    border-color: defs.$green;
   }
 
   /* raw output */
-  .unsupported { color: $green;  }
+  .unsupported { color: defs.$green;  }
 }

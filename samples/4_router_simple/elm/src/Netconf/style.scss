@@ -1,3 +1,5 @@
+@use "../TopLevel/defs";
+
 /*
  * Netconf style
  */
@@ -16,16 +18,16 @@ pre code {
     display: block;
     overflow-x: auto;
     padding: 0.5em;
-    background: $white;
-    color: $purple;
+    background: defs.$white;
+    color: defs.$purple;
 }
 
 .hljs-attribute, .hljs-keyword, .hljs-built_in, .hljs-attr {
-    color: $green;
+    color: defs.$green;
 }
 
 .hljs-number, .hljs-literal, .hljs-string, .hljs-name {
-    color: $blue;
+    color: defs.$blue;
 }
 
 .hljs-comment, .hljs-meta {
@@ -38,7 +40,7 @@ pre code {
 }
 
 .hljs-title, .hljs-value, .hljs-class, .hljs-function, .hljs-string {
-    color: $red;
+    color: defs.$red;
 }
 
 .hljs-keyword, .hljs-title, .hljs-class, .hljs-section {

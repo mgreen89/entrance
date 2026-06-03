@@ -5,16 +5,16 @@
 /*
  * Definitions
  */
-@import "TopLevel/defs.scss";
+@use "TopLevel/defs.scss";
 
 /*
  * Style declarations
  */
-@import "TopLevel/style.scss";
+@use "TopLevel/style.scss";
 
-@import "Config/style.scss";
-@import "Connection/style.scss";
-@import "Logs/style.scss";
-@import "Netconf/style.scss";
-@import "Utils/samples.scss";
-@import "Utils/toast.scss";
+@use "Config/style.scss" as style2;
+@use "Connection/style.scss" as style3;
+@use "Logs/style.scss" as style4;
+@use "Netconf/style.scss" as style5;
+@use "Utils/samples.scss";
+@use "Utils/toast.scss";

@@ -60,7 +60,9 @@ class WebsocketHandler:
             try:
                 # If client is inactive for 10 minutes, send a ping to verify
                 # connectivity
-                req = await asyncio.wait_for(self.ws.recv(), timeout=10 * 60)
+                req = await asyncio.wait_for(
+                    self.ws.receive_text(), timeout=10 * 60
+                )
                 got_req = True
             except asyncio.TimeoutError:
                 try:
@@ -70,7 +72,7 @@ class WebsocketHandler:
                     log.error("No pong - websocket seems inactive")
                     self._handle_websocket_closed()
                     break
-            except (asyncio.CancelledError, ConnectionClosed):
+            except (asyncio.CancelledError, WebSocketDisconnect):
                 self._handle_websocket_closed()
                 break
 

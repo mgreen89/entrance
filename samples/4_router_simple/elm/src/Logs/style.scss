@@ -1,3 +1,5 @@
+@use "../TopLevel/defs";
+
 /*
  * Log styling
  */
@@ -7,6 +9,6 @@
     font-size: smaller;
 
     .light {
-        color: $grey;
+        color: defs.$grey;
     }
 }

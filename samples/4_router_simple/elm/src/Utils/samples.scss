@@ -1,3 +1,5 @@
+@use "../TopLevel/defs";
+
 /*
  * Style for samples: close buttons to right of dropdown menu items
  */
@@ -8,5 +10,5 @@
 
 .dropdown-menu.with-close button.btn.close {
     margin-right: -2em;
-    color: $light-grey;
+    color: defs.$light-grey;
 }

@@ -4,15 +4,17 @@
   "description": "Simple EnTrance example",
   "license": "MIT",
   "dependencies": {
-    "entrance-ws": "^1.1.1",
-    "parcel-bundler": "^1.12.3"
+    "entrance-ws": "^1.1.1"
   },
   "devDependencies": {
+    "@parcel/transformer-elm": "2.16.4",
+    "@parcel/transformer-sass": "2.16.4",
     "cssnano": "^4.1.10",
     "elm": "^0.19.1-1",
     "elm-analyse": "^0.16.4",
     "elm-hot": "^1.0.1",
     "node-elm-compiler": "^5.0.3",
+    "parcel": "^2.16.4",
     "sass": "^1.18.0"
   },
   "scripts": {

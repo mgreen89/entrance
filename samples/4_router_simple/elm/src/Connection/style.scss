@@ -1,3 +1,5 @@
+@use "../TopLevel/defs";
+
 /*
  * Connection modal styling
  */
@@ -36,13 +38,13 @@ label {
 /*
  * Colours
  */
-.state-grey  { color: $grey;   }
-.state-amber { color: $orange; }
-.state-green { color: $green;  }
-.state-red   { color: $red;    }
+.state-grey  { color: defs.$grey;   }
+.state-amber { color: defs.$orange; }
+.state-green { color: defs.$green;  }
+.state-red   { color: defs.$red;    }
 
 input.bad-input {
     &, &:focus {
-        background-color: $muddy-red;
+        background-color: defs.$muddy-red;
     }
 }
